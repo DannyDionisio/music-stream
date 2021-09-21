@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 400 14px Oxygen, sans-serif;
+  background: #474646;
+}
+
+button {
+  font: 400 18px Oxygen, sans-serif;
+  cursor: pointer;
+}
