@@ -4,6 +4,7 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: 85px;
+  min-height: 100vh;
 }
 
 button {
@@ -37,17 +38,21 @@ button {
   gap: 20px;
 }
 
-.container {
+.album-list .album-container {
+  flex: 1;
+}
+
+.album-container {
   display: flex;
   flex-direction: column;
 
   width: 200px;
 }
-.container img {
+.album-container img {
   width: 100%;
 }
 
-.container .qobuz {
+.album-container .qobuz {
   width: 20px;
   height: 20px;
   position: relative;
@@ -56,11 +61,11 @@ button {
   align-self: self-end;
 }
 
-.container span {
+.album-container span {
   color: #fff;
 }
 
-.container p {
+.album-container p {
   color: #ccc;
 }
 
@@ -70,8 +75,14 @@ button {
   }
 }
 
+@media screen and (max-width: 680px) {
+  .album-container {
+    width: 250px;
+  }
+}
+
 @media screen and (max-width: 460px) {
-  .container {
+  .album-container {
     width: auto;
   }
 }

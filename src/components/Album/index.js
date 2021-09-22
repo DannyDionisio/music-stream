@@ -7,7 +7,7 @@ const getCover = (album) => {
 
 const Album = ({ album }) => {
   return (
-    <div className="container">
+    <div className="album-container">
       <img src={getCover(album)} alt="Album Cover" />
       {album.source === "QOBUZ" && (
         <img src={"./images/qobuz.png"} alt="sourceimage" className="qobuz" />
