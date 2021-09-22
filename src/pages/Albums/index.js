@@ -15,42 +15,54 @@ const getCover = (album) => {
 
 const Albums = () => {
   const [data, setData] = useState([]);
-  const [source, setSource] = useState([]);
+  const [selectedSource, setSelectedSource] = useState("");
 
   useEffect(() => {
-    getData().then(function (myJson) {
-      setData(myJson);
+    getData().then(function (json) {
+      let filteredData = json;
+
+      if (selectedSource !== "") {
+        filteredData = json.filter((album) => album.source === selectedSource);
+      }
+
+      setData(filteredData);
     });
-  }, []);
+  }, [selectedSource]);
+
+  const handleSourceChange = (e) => {
+    setSelectedSource(e.target.value);
+  };
 
   return (
     <div id="albums-page">
       <div className="filter-list">
         <label for="source">Filter by:</label>
 
-        <select name="source" id="source">
-          <option value="all">All</option>
-          <option value="local">Local</option>
-          <option value="Qobuz">Qobuz</option>
+        <select name="source" id="source" onChange={handleSourceChange}>
+          <option value="">All</option>
+          <option value="LOCAL">Local</option>
+          <option value="QOBUZ">Qobuz</option>
         </select>
       </div>
 
-      {data &&
-        data.length > 0 &&
-        data.map((album, source) => (
-          <div className="container">
-            <img src={getCover(album)} alt="Album Cover" />
-            {album.source === "QOBUZ" && (
-              <img
-                src={"./images/qobuz.png"}
-                alt="sourceimage"
-                className="qobuz"
-              />
-            )}
-            <span>{album.album}</span>
-            <p>{album.artist}</p>
-          </div>
-        ))}
+      <div className="albums-list">
+        {data &&
+          data.length > 0 &&
+          data.map((album) => (
+            <div className="container">
+              <img src={getCover(album)} alt="Album Cover" />
+              {album.source === "QOBUZ" && (
+                <img
+                  src={"./images/qobuz.png"}
+                  alt="sourceimage"
+                  className="qobuz"
+                />
+              )}
+              <span>{album.album}</span>
+              <p>{album.artist}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
